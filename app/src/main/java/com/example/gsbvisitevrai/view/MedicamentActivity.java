@@ -6,9 +6,11 @@ import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.example.gsbvisitevrai.R;
+import com.example.gsbvisitevrai.controller.MedicamentController;
 
 public class MedicamentActivity extends AppCompatActivity {
     ListView lvMedicaments;
+    MedicamentController medicamentController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +21,7 @@ public class MedicamentActivity extends AppCompatActivity {
 
         lvMedicaments.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listeStrings));
         ecouteRetour();
+        this.medicamentController = MedicamentController.getInstance(getBaseContext());
     }
 
     private void ecouteRetour() {
