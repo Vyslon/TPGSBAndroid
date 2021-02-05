@@ -10,15 +10,15 @@ import java.util.ArrayList;
  * Classe MedicamentDAO.
  * @author : B. CHATAING.
  * created on  26/01/2021.
- * modified on .
+ * modified on 28/01/2021.
  */
 public class MedicamentDAO {
-    private Dal dal;
+    final private Dal dal;
     private SQLiteDatabase db;
 
     public MedicamentDAO(Context context) {
-
-        dal = new Dal(context);
+        this.dal = Dal.getInstance(context);
+        create();
     }
 
     /**
@@ -26,34 +26,37 @@ public class MedicamentDAO {
      */
     public void create() {
         db = dal.getCreateDb().getWritableDatabase();
-        String req = "insert into medicament values ("
-                + "'3MYC7',"
-                + "'TRIMYCINE',"
-                + "'Triamcinolone (acétonide) + Néomycine + Nystatine',"
-                + "'Redoutable',"
-                + "'Ce médicament est contre-indiqué en cas de trouble du sommeil',"
-                + "16)";
-        db.execSQL(req);
-        req = "insert into medicament values ("
-                + "'ADIMOL9',"
-                + "'ADIMOL',"
-                + "'Amoxicilline + Acide clavulanique',"
-                + "'Puissant',"
-                + "'Ce médicament est contre-indiqué en cas de trouble du sommeil',"
-                + "27)";
-        db.execSQL(req);
-        req = "insert into medicament values ("
-                + "'AMOPIL7',"
-                + "'AMOPIL',"
-                + "'Amoxicilline',"
-                + "'Ce médicament est plus puissant que les pénicillines ',"
-                + "'Ce médicament est contre-indiqué en cas de trouble du sommeil',"
-                + "35)";
+        if (read().size() == 0) {
+            String req = "insert into medicament values ("
+                    + "'3MYC7',"
+                    + "'TRIMYCINE',"
+                    + "'Triamcinolone (acétonide) + Néomycine + Nystatine',"
+                    + "'Redoutable',"
+                    + "'Ce médicament est contre-indiqué en cas de trouble du sommeil',"
+                    + "16)";
+            db.execSQL(req);
+            req = "insert into medicament values ("
+                    + "'ADIMOL9',"
+                    + "'ADIMOL',"
+                    + "'Amoxicilline + Acide clavulanique',"
+                    + "'Puissant',"
+                    + "'Ce médicament est contre-indiqué en cas de trouble du sommeil',"
+                    + "27)";
+            db.execSQL(req);
+            req = "insert into medicament values ("
+                    + "'AMOPIL7',"
+                    + "'AMOPIL',"
+                    + "'Amoxicilline',"
+                    + "'Ce médicament est plus puissant que les pénicillines ',"
+                    + "'Ce médicament est contre-indiqué en cas de trouble du sommeil',"
+                    + "35)";
+            db.execSQL(req);
+        }
     }
 
     /**
      * R du Crud.
-     * @return
+     * @return arraylist contenant les médicaments de la table medicament.
      */
     public ArrayList<Medicament> read() {
         ArrayList<Medicament> medicaments = new ArrayList<>();
@@ -69,9 +72,11 @@ public class MedicamentDAO {
             String effet = cursor.getString(3);
             String contreindic = cursor.getString(4);
             Float prix = cursor.getFloat(5);
-            medicament = new Medicament(depot,nom,composition,prix.doubleValue());
+            medicament = new Medicament(depot,nom,composition,effet,contreindic,prix.doubleValue());
             medicaments.add(medicament);
+            cursor.moveToNext();
         }
+        cursor.close();
         return medicaments;
     }
 

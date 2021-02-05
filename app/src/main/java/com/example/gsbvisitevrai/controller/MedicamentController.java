@@ -7,26 +7,43 @@ import com.example.gsbvisitevrai.model.MedicamentDAO;
 import java.util.ArrayList;
 
 public final class MedicamentController {
-    private static MedicamentController medicamentController = null;
-    private static ArrayList<Medicament> medicaments;
 
-    private MedicamentController() {
+    private static MedicamentController medicamentController = null;
+    private static ArrayList<Medicament>medicaments;
+
+    private MedicamentController(){
         super();
     }
 
-    public static final MedicamentController getInstance(Context context) {
-        if (MedicamentController.medicamentController == null) {
+    /**
+     * Accesseur
+     * @return : une instance unique de MedicamentController (singleton)
+     */
+    public static final MedicamentController getInstance(Context context){
+        if(MedicamentController.medicamentController == null) {
             MedicamentController.medicamentController = new MedicamentController();
             medicaments = new ArrayList<>();
-            MedicamentDAO medicamentsDAO = new MedicamentDAO(context);
-            medicaments = medicamentsDAO.read();
+            MedicamentDAO medicamentDAO = new MedicamentDAO(context);
+            medicaments = medicamentDAO.read();
+
         }
         return MedicamentController.medicamentController;
     }
 
+    /**
+     * Trouver un médicament par son indice dans l'arraylist
+     * @param index
+     * @return le médicament
+     */
+
     public Medicament getMedicament(int index) {
         return medicaments.get(index);
     }
+
+    /**
+     * Liste des médicaments
+     * @return : l'arraylist de médicaments
+     */
 
     public ArrayList<Medicament> medicaments () {
         return medicaments;

@@ -9,11 +9,17 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".view.layout_spinner_praticiens">
+        </activity>
+        <activity android:name=".view.DetailMedicamentActivity">
+        </activity>
         <activity android:name=".view.priseRDV">
         </activity>
         <activity android:name=".view.listeRDV">
         </activity>
         <activity android:name=".view.MedicamentActivity">
+        </activity>
+        <activity android:name=".view.DetailJourActivity">
         </activity>
         <activity android:name=".view.MainActivity">
             <intent-filter>
