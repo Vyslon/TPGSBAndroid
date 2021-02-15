@@ -3,6 +3,9 @@ package com.example.gsbvisitevrai.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/**
+ * Classe métier, implémente Parcelable pour pouvoir afficher un médicament dans l'IHM
+ */
 public class Medicament implements Parcelable {
     private String MDepotLegal;
     private String MNomCommercial;

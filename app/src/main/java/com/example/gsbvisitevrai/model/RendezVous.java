@@ -6,10 +6,7 @@ import android.os.Parcelable;
 import java.util.Date;
 
 /**
- * Classe RendezVous.
- * @author : B. CHATAING.
- * created on  31/01/2021.
- * modified on 31/01/2021.
+ * Classe métier, implémente Parcelable pour pouvoir afficher un médicament dans l'IHM
  */
 public class RendezVous implements Parcelable {
     private int numero;

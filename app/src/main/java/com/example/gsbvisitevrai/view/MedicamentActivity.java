@@ -16,24 +16,33 @@ public class MedicamentActivity extends AppCompatActivity implements AdapterView
     com.example.gsbvisite.view.MedicamentListAdapter adapter;
     private ArrayList<Medicament> lesmedicaments;
 
-
+    /**
+     * Appeler lors de l'ouverture de la page
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medicament);
         creerListe();
         retourAcceuil();
-
-
     }
+
+    /**
+     * Gère le retour arrière
+     */
     private void retourAcceuil() {
-        ((ImageButton) findViewById(R.id.btnRetourdeMedic)).setOnClickListener(new View.OnClickListener() {
+        ((ImageButton) findViewById(R.id.btnRetourDeMedic)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
     }
+
+    /**
+     * Créer la liste de médicaments
+     */
     private void creerListe(){
         Intent intent = getIntent();
         lesmedicaments =  intent.getParcelableArrayListExtra("lesMedocs");
@@ -45,6 +54,13 @@ public class MedicamentActivity extends AppCompatActivity implements AdapterView
         }
     }
 
+    /**
+     * Permet la sélection d'un médicament pour afficher ses détails
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Log.i("Medoc", "Position : " + String.valueOf(position));

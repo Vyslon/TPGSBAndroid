@@ -22,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
     Bundle bundleMedocs = new Bundle();
     Bundle bundlePraticiens = new Bundle();
 
+    /**
+     * Appeler lors de l'ouverture de la page d'accueil
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
         bundlePraticiens.putParcelableArrayList("lesPraticiens", praticiens);
         ecoutecalcul();
     }
+
+    /**
+     * Ajoute à chaque bouton le comportement nécessare à l'ouverture de la page correspondante
+     */
     private void ecoutecalcul(){
         ((Button) findViewById(R.id.btnListRdv)).setOnClickListener(new View.OnClickListener() {
             @Override

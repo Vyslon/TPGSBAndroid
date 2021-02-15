@@ -30,12 +30,17 @@ public class priseRDV extends AppCompatActivity implements DatePickerDialog.OnDa
     int myday, myMonth, myYear, myHour, myMinute;
     LocalDateTime myDateTime;
 
+    /**
+     * Appeler à l'ouverture de la page, affiche les praticiens pour la sélection et afficher un sélecteur de date/heure
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prise_r_d_v);
         textView = findViewById(R.id.textView);
         button = findViewById(R.id.btnPick);
+        //permet la sélection d'une date et d'une heure pour un rendez-vous
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,6 +67,13 @@ public class priseRDV extends AppCompatActivity implements DatePickerDialog.OnDa
         ecouteSauvegarder();
     }
 
+    /**
+     * Appeler lorsqu'une date est sélectionnée
+     * @param view
+     * @param year
+     * @param month
+     * @param dayOfMonth
+     */
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         myYear = year;
@@ -73,6 +85,13 @@ public class priseRDV extends AppCompatActivity implements DatePickerDialog.OnDa
         TimePickerDialog timePickerDialog = new TimePickerDialog(priseRDV.this, priseRDV.this, hour, minute, DateFormat.is24HourFormat(this));
         timePickerDialog.show();
     }
+
+    /**
+     * Appeler lorsqu'une heure est sélectionnée
+     * @param view
+     * @param hourOfDay
+     * @param minute
+     */
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         myHour = hourOfDay;
@@ -94,8 +113,9 @@ public class priseRDV extends AppCompatActivity implements DatePickerDialog.OnDa
     }
 
 
-
-
+    /**
+     * Gère le retour arrière
+     */
     private void ecouteRetour() {
         ((ImageButton) findViewById(R.id.btnRetourdePriseRDV)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -104,6 +124,9 @@ public class priseRDV extends AppCompatActivity implements DatePickerDialog.OnDa
         });
     }
 
+    /**
+     * Sauvegarde le rendez-vous, confirme la sauvegarde et retourne à l'accueil
+     */
     private void ecouteSauvegarder() {
         ((Button) findViewById(R.id.btnSauvRDV)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

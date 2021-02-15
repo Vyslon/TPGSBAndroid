@@ -34,6 +34,7 @@ public class RendezVousDao {
      */
     public void create(String date, String heure, String idPraticien) {
         db = dal.getCreateDb().getWritableDatabase();
+        // décommenter pour ajouter des rendez-vous dans la BDD
 /*        if (read().size() == 0) {
             String req = "insert into rendezvous values ("
                     + "1,"

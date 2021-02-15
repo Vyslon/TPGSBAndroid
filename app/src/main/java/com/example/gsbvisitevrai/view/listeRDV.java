@@ -23,6 +23,10 @@ import java.util.List;
 public class listeRDV extends AppCompatActivity {
     private ArrayList<RendezVous> lesRDV;
 
+    /**
+     * Appeler lors de l'ouverture de la page, affiche les rendez-vous dans l'agenda
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +55,7 @@ public class listeRDV extends AppCompatActivity {
         CalendarView calendarView = (CalendarView) findViewById(R.id.calendarView);
         calendarView.setEvents(events);
         List<Calendar> selectedDates = calendarView.getSelectedDates();
+        // Gère l'affichage des détails pour le jour cliqué
         calendarView.setOnDayClickListener(new OnDayClickListener() {
             @Override
             public void onDayClick(EventDay eventDay) {
@@ -67,7 +72,9 @@ public class listeRDV extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Gère le retour arrière
+     */
     private void ecouteRetour() {
         ((ImageButton) findViewById(R.id.btnRetourdeListeRDV)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

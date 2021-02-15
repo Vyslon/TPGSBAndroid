@@ -19,7 +19,7 @@ public final class PraticienController {
 
     /**
      * Accesseur
-     * @return : une instance unique de MedicamentController (singleton)
+     * @return : une instance unique de PraticienController (singleton)
      */
     public static final PraticienController getInstance(Context context){
         if(PraticienController.praticienController == null) {
@@ -33,9 +33,9 @@ public final class PraticienController {
     }
 
     /**
-     * Trouver un médicament par son indice dans l'arraylist
+     * Trouver un praticien par son indice dans l'arraylist
      * @param index
-     * @return le médicament
+     * @return le praticien
      */
 
     public Praticien getPraticien(int index) {
@@ -43,8 +43,8 @@ public final class PraticienController {
     }
 
     /**
-     * Liste des médicaments
-     * @return : l'arraylist de médicaments
+     * Liste des praticiens
+     * @return : l'arraylist de praticiens
      */
 
     public ArrayList<Praticien> praticiens () {

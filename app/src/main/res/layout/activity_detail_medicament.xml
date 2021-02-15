@@ -14,7 +14,7 @@
             <Button
                     android:text="Retour"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/btnRetourdeMedic"/>
+                    android:layout_height="wrap_content" android:id="@+id/btnRetourdeDetailMedic"/>
         </LinearLayout>
         <LinearLayout
                 android:orientation="vertical"

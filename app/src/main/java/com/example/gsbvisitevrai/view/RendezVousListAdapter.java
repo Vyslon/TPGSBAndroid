@@ -12,6 +12,9 @@ import com.example.gsbvisitevrai.model.RendezVous;
 
 import java.util.ArrayList;
 
+/**
+ * Aide à l'affichage de la liste dans un listview
+ */
 public class RendezVousListAdapter extends BaseAdapter {
 
     private ArrayList<RendezVous> lesRDV;

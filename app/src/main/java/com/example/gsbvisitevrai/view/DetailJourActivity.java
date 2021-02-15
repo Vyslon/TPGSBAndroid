@@ -16,6 +16,10 @@ public class DetailJourActivity extends AppCompatActivity {
     private ArrayList<RendezVous> lesRDV;
     private com.example.gsbvisitevrai.view.RendezVousListAdapter adapter;
 
+    /**
+     * S'exécute lors de l'ouverture de la page
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +28,9 @@ public class DetailJourActivity extends AppCompatActivity {
         ecouteRetour();
     }
 
+    /**
+     * Créer la liste des rendez-vous
+     */
     private void creerListe(){
         Intent intent = getIntent();
         lesRDV =  intent.getParcelableArrayListExtra("lesRendezVous");
@@ -34,6 +41,9 @@ public class DetailJourActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Permet le retour arrière
+     */
     private void ecouteRetour() {
         ((ImageButton) findViewById(R.id.btnRetourDeDetail)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

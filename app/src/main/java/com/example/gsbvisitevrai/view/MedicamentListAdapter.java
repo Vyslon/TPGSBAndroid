@@ -11,6 +11,9 @@ import com.example.gsbvisitevrai.model.Medicament;
 
 import java.util.ArrayList;
 
+/**
+ * Aide à l'affichage de la liste dans un listview
+ */
 public class MedicamentListAdapter extends BaseAdapter {
 
     private ArrayList<Medicament> lesMedicaments;

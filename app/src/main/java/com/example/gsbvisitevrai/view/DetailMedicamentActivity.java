@@ -16,6 +16,10 @@ public class DetailMedicamentActivity extends AppCompatActivity {
     private TextView txtComposition;
     private TextView txtContreIndication;
 
+    /**
+     * Appeler lors de l'ouverture de la page, rempli les textview
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,9 +40,12 @@ public class DetailMedicamentActivity extends AppCompatActivity {
         txtPrix.setText(prix.toString());
         gestionClic();
     }
-    
+
+    /**
+     * Gère le retour arrière
+     */
     private void gestionClic() {
-        ((Button)this.findViewById(R.id.btnRetourDeDetail)).setOnClickListener((v) -> {
+        ((Button)this.findViewById(R.id.btnRetourdeDetailMedic)).setOnClickListener((v) -> {
             onBackPressed();
         });
     }
