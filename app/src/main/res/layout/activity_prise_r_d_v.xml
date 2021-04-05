@@ -5,15 +5,10 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" app:srcCompat="@drawable/retour"
-                android:id="@+id/btnRetourdePriseRDV" android:scaleType="fitStart"/>
-    </LinearLayout>
+    <include
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"

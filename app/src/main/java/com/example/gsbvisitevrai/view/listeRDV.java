@@ -8,20 +8,34 @@ import android.widget.ListView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.appcompat.widget.Toolbar;
 import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
 import com.example.gsbvisitevrai.R;
+import com.example.gsbvisitevrai.controller.MedicamentController;
+import com.example.gsbvisitevrai.controller.PraticienController;
 import com.example.gsbvisitevrai.controller.RendezVousController;
 import com.example.gsbvisitevrai.model.Medicament;
+import com.example.gsbvisitevrai.model.Praticien;
 import com.example.gsbvisitevrai.model.RendezVous;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 public class listeRDV extends AppCompatActivity {
     private ArrayList<RendezVous> lesRDV;
+    ArrayList<Medicament> medicaments;
+    ArrayList<Praticien> praticiens;
+    ArrayList<RendezVous> rendezVous;
+    Bundle bundleRDV = new Bundle();
+    Bundle bundleMedocs = new Bundle();
+    Bundle bundlePraticiens = new Bundle();
+
 
     /**
      * Appeler lors de l'ouverture de la page, affiche les rendez-vous dans l'agenda
@@ -63,22 +77,72 @@ public class listeRDV extends AppCompatActivity {
                 System.out.println(")))))))))))))))" + clickedDayCalendar.HOUR + ":" + clickedDayCalendar.MINUTE);
                 Intent intent = new Intent(listeRDV.this, DetailJourActivity.class);
                 Bundle bundleRDV = new Bundle();
-                bundleRDV.putParcelableArrayList("lesRendezVous", lesRDV);
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                bundleRDV.putParcelableArrayList("lesRendezVous", rendezVousController.rendezVous(sdf.format(clickedDayCalendar.getTime())));
                 intent.putExtras(bundleRDV);
                 startActivity(intent);
             }
         });
-        ecouteRetour();
+        bundleRDV.putParcelableArrayList("lesRendezVous", rendezVous);
+        bundleMedocs.putParcelableArrayList("lesMedocs", medicaments);
+        bundlePraticiens.putParcelableArrayList("lesPraticiens", praticiens);
+
+        ecouteAjouterRDV();
+        //1 - Configuration Toolbar
+        this.configureToolbar();
+        //2 - Configuration Navigation View
+        this.configureNavigation();
+
     }
 
+    private void configureToolbar() {
+        // Get the toolbar view inside the activity layout
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Mes rendez-vous");
+        // Sets the Toolbar
+        setSupportActionBar(toolbar);
+    }
 
-    /**
-     * Gère le retour arrière
-     */
-    private void ecouteRetour() {
-        ((ImageButton) findViewById(R.id.btnRetourdeListeRDV)).setOnClickListener(new View.OnClickListener() {
+    private void configureNavigation() {
+        BottomNavigationView bottomNavigationView;
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                (item) -> {
+                    Intent intent;
+                    switch (item.getItemId()) {
+                        case R.id.action_medicine: {
+                            intent = new Intent(listeRDV.this, MedicamentActivity.class);
+                            MedicamentController medicamentController = MedicamentController.getInstance(getBaseContext());
+                            medicaments = medicamentController.medicaments();
+                            bundleMedocs.putParcelableArrayList("lesMedocs", medicaments);
+                            intent.putExtras(bundleMedocs);
+                            startActivity(intent);
+                            break;
+                        }
+/*                        case R.id.action_settings: {
+                            // TODO : intent = new Intent(listeRDV.this, Profil.class);
+                            //startActivity(intent);
+                            break;
+                        }*/
+                    }
+                    return true;
+                }
+        );
+    }
+
+    private void ecouteAjouterRDV() {
+        ((FloatingActionButton) findViewById(R.id.fabAjouter)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                onBackPressed();
+                Intent intent = new Intent(listeRDV.this, priseRDV.class);
+                PraticienController praticienController = PraticienController.getInstance(getBaseContext());
+                praticiens = praticienController.praticiens();
+                RendezVousController rendezVousController = RendezVousController.getInstance(getBaseContext());
+                rendezVous = rendezVousController.rendezVous();
+                bundleRDV.putParcelableArrayList("lesRendezVous", rendezVous);
+                bundlePraticiens.putParcelableArrayList("lesPraticiens", praticiens);
+                intent.putExtras(bundleRDV);
+                intent.putExtras(bundlePraticiens);
+                startActivity(intent);
             }
         });
     }

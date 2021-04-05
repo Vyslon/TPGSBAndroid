@@ -1,19 +1,16 @@
 package com.example.gsbvisitevrai.view;
 
 import android.app.DatePickerDialog;
-import android.app.NotificationManager;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.*;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
+import androidx.appcompat.widget.Toolbar;
 import com.desai.vatsal.mydynamictoast.MyDynamicToast;
 import com.example.gsbvisitevrai.R;
 import com.example.gsbvisitevrai.controller.RendezVousController;
@@ -63,8 +60,9 @@ public class priseRDV extends AppCompatActivity implements DatePickerDialog.OnDa
                 android.R.layout.simple_spinner_item, numerosPraticiens);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        ecouteRetour();
         ecouteSauvegarder();
+        //1 - Configuring Toolbar
+        this.configureToolbar();
     }
 
     /**
@@ -114,17 +112,6 @@ public class priseRDV extends AppCompatActivity implements DatePickerDialog.OnDa
 
 
     /**
-     * Gère le retour arrière
-     */
-    private void ecouteRetour() {
-        ((ImageButton) findViewById(R.id.btnRetourdePriseRDV)).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-    }
-
-    /**
      * Sauvegarde le rendez-vous, confirme la sauvegarde et retourne à l'accueil
      */
     private void ecouteSauvegarder() {
@@ -139,8 +126,21 @@ public class priseRDV extends AppCompatActivity implements DatePickerDialog.OnDa
                 String text = spinner.getSelectedItem().toString();
                 rendezVousController.ajouterRendezVous(myFormattedDate, myFormattedTime, text);
                 MyDynamicToast.successMessage(priseRDV.this, "Rendez-vous ajouté");
-                onBackPressed();
             }
         });
+    }
+
+    private void configureToolbar() {
+        //Get the toolbar (serialise)
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //Set the toolbar
+        toolbar.setTitle("Sauvegarder un rendez-vous");
+        setSupportActionBar(toolbar);
+        // Get a support ActionBar corresponding to this toolbar
+        ActionBar actionBar = getSupportActionBar();
+        // Enable the Up button
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 }

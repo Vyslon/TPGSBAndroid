@@ -1,11 +1,15 @@
 package com.example.gsbvisitevrai.view;
 
 import android.content.Intent;
+import android.view.Menu;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.appcompat.widget.Toolbar;
 import com.example.gsbvisitevrai.R;
 import com.example.gsbvisitevrai.controller.MedicamentController;
 import com.example.gsbvisitevrai.controller.PraticienController;
@@ -15,12 +19,13 @@ import com.example.gsbvisitevrai.model.*;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    ArrayList<Medicament> medicaments;
+/*    ArrayList<Medicament> medicaments;
     ArrayList<Praticien> praticiens;
     ArrayList<RendezVous> rendezVous;
     Bundle bundleRDV = new Bundle();
     Bundle bundleMedocs = new Bundle();
-    Bundle bundlePraticiens = new Bundle();
+    Bundle bundlePraticiens = new Bundle();*/
+    private EditText editText;
 
     /**
      * Appeler lors de l'ouverture de la page d'accueil
@@ -30,7 +35,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        MedicamentController medicamentController = MedicamentController.getInstance(getBaseContext());
+
+        editText = (EditText) findViewById(R.id.idApplication);
+        editText.setOnEditorActionListener((v, actionId, event) -> {
+            if(actionId == EditorInfo.IME_ACTION_DONE) {
+                String value = editText.getText().toString();
+                String marqueur = "9999";
+                if (value.compareTo(marqueur) == 0) {
+                    Intent intent = new Intent(MainActivity.this, listeRDV.class);
+                    startActivity(intent);
+                }
+                else
+                    Toast.makeText(MainActivity.this, "Code erroné", Toast.LENGTH_SHORT).show();
+            }
+            return false;
+        }
+        );
+
+/*        MedicamentController medicamentController = MedicamentController.getInstance(getBaseContext());
         medicaments = medicamentController.medicaments();
         PraticienController praticienController = PraticienController.getInstance(getBaseContext());
         praticiens = praticienController.praticiens();
@@ -40,12 +62,15 @@ public class MainActivity extends AppCompatActivity {
         bundleMedocs.putParcelableArrayList("lesMedocs", medicaments);
         bundlePraticiens.putParcelableArrayList("lesPraticiens", praticiens);
         ecoutecalcul();
+
+        //1 - Configuration Toolbar
+        this.configureToolbar();*/
     }
 
     /**
      * Ajoute à chaque bouton le comportement nécessare à l'ouverture de la page correspondante
      */
-    private void ecoutecalcul(){
+/*    private void ecoutecalcul(){
         ((Button) findViewById(R.id.btnListRdv)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,5 +100,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }*/
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //2 - Ajouter le menu à la Toolbard
+        getMenuInflater().inflate(R.menu.menu_activity, menu);
+        return true;
+    }
+
+    private void configureToolbar() {
+        // Get the toolbar view inside the activity layout
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Mes rendez-vous");
+        // Sets the Toolbar
+        setSupportActionBar(toolbar);
     }
 }

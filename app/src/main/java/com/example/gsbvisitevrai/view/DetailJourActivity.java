@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.*;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.appcompat.widget.Toolbar;
 import com.example.gsbvisitevrai.R;
 import com.example.gsbvisitevrai.model.Medicament;
 import com.example.gsbvisitevrai.model.RendezVous;
@@ -25,7 +27,8 @@ public class DetailJourActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_jour);
         creerListe();
-        ecouteRetour();
+
+        this.configureToolbar();
     }
 
     /**
@@ -41,15 +44,17 @@ public class DetailJourActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Permet le retour arrière
-     */
-    private void ecouteRetour() {
-        ((ImageButton) findViewById(R.id.btnRetourDeDetail)).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+    private void configureToolbar() {
+        //Get the toolbar (serialise)
+        androidx.appcompat.widget.Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //Set the toolbar
+        toolbar.setTitle("Mes rendez-vous du jour");
+        setSupportActionBar(toolbar);
+        // Get a support ActionBar corresponding to this toolbar
+        ActionBar actionBar = getSupportActionBar();
+        // Enable the Up button
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
-
 }

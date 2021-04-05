@@ -8,18 +8,30 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
+            android:theme="@style/GsbTheme">
         <activity android:name=".view.layout_spinner_praticiens">
         </activity>
         <activity android:name=".view.DetailMedicamentActivity">
         </activity>
-        <activity android:name=".view.priseRDV">
+        <activity android:name=".view.priseRDV"
+                  android:parentActivityName=".view.listeRDV">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.listeRDV"
+                android:resource="@color/text_normal"
+            />
+        </activity>
+        <activity android:name=".view.DetailJourActivity"
+                  android:parentActivityName=".view.listeRDV">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".view.listeRDV"
+                    android:resource="@color/text_normal"
+            />
         </activity>
         <activity android:name=".view.listeRDV">
         </activity>
         <activity android:name=".view.MedicamentActivity">
-        </activity>
-        <activity android:name=".view.DetailJourActivity">
         </activity>
         <activity android:name=".view.MainActivity">
             <intent-filter>

@@ -4,10 +4,18 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.*;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.appcompat.widget.Toolbar;
 import com.example.gsbvisitevrai.R;
+import com.example.gsbvisitevrai.controller.MedicamentController;
+import com.example.gsbvisitevrai.controller.PraticienController;
+import com.example.gsbvisitevrai.controller.RendezVousController;
 import com.example.gsbvisitevrai.model.Medicament;
+import com.example.gsbvisitevrai.model.Praticien;
+import com.example.gsbvisitevrai.model.RendezVous;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
@@ -15,6 +23,12 @@ public class MedicamentActivity extends AppCompatActivity implements AdapterView
     ListView lvMedicaments;
     com.example.gsbvisite.view.MedicamentListAdapter adapter;
     private ArrayList<Medicament> lesmedicaments;
+    ArrayList<Medicament> medicaments;
+    ArrayList<Praticien> praticiens;
+    ArrayList<RendezVous> rendezVous;
+    Bundle bundleRDV = new Bundle();
+    Bundle bundleMedocs = new Bundle();
+    Bundle bundlePraticiens = new Bundle();
 
     /**
      * Appeler lors de l'ouverture de la page
@@ -25,19 +39,9 @@ public class MedicamentActivity extends AppCompatActivity implements AdapterView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medicament);
         creerListe();
-        retourAcceuil();
-    }
 
-    /**
-     * Gère le retour arrière
-     */
-    private void retourAcceuil() {
-        ((ImageButton) findViewById(R.id.btnRetourDeMedic)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+        configureToolbar();
+        configureNavigation();
     }
 
     /**
@@ -66,10 +70,57 @@ public class MedicamentActivity extends AppCompatActivity implements AdapterView
         Log.i("Medoc", "Position : " + String.valueOf(position));
         Medicament medicament = (Medicament)adapter.getItem(position);
         String value = medicament.getMNomCommercial();
-        Toast.makeText(getApplicationContext(), value, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(MedicamentActivity.this, DetailMedicamentActivity.class);
         intent.putExtra("medicament", medicament);
         startActivity(intent);
+    }
+
+    private void configureNavigation() {
+        BottomNavigationView bottomNavigationView;
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                (item) -> {
+                    Intent intent;
+                    switch (item.getItemId()) {
+                        case R.id.action_accueil:
+                            intent = new Intent(MedicamentActivity.this, listeRDV.class);
+                            PraticienController praticienController = PraticienController.getInstance(getBaseContext());
+                            praticiens = praticienController.praticiens();
+                            RendezVousController rendezVousController = RendezVousController.getInstance(getBaseContext());
+                            rendezVous = rendezVousController.rendezVous();
+                            bundleRDV.putParcelableArrayList("lesRendezVous", rendezVous);
+                            bundleMedocs.putParcelableArrayList("lesMedocs", medicaments);
+                            bundlePraticiens.putParcelableArrayList("lesPraticiens", praticiens);
+                            intent.putExtras(bundleRDV);
+                            intent.putExtras(bundlePraticiens);
+                            startActivity(intent);
+                            break;
+                        case R.id.action_medicine: {
+                            intent = new Intent(MedicamentActivity.this, MedicamentActivity.class);
+                            MedicamentController medicamentController = MedicamentController.getInstance(getBaseContext());
+                            medicaments = medicamentController.medicaments();
+                            bundleMedocs.putParcelableArrayList("lesMedocs", medicaments);
+                            intent.putExtras(bundleMedocs);
+                            startActivity(intent);
+                            break;
+                        }
+/*                        case R.id.action_settings: {
+                            // TODO : intent = new Intent(listeRDV.this, Profil.class);
+                            //startActivity(intent);
+                            break;
+                        }*/
+                    }
+                    return true;
+                }
+        );
+    }
+
+    private void configureToolbar() {
+        // Get the toolbar view inside the activity layout
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Liste des médicaments");
+        // Sets the Toolbar
+        setSupportActionBar(toolbar);
     }
 
 }

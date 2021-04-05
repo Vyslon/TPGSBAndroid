@@ -10,12 +10,7 @@
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            <ImageButton
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" app:srcCompat="@drawable/retour"
-                    android:id="@+id/btnRetourDeDetail"/>
-        </LinearLayout>
+                android:layout_height="wrap_content"/>
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -23,11 +18,12 @@
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content" android:layout_marginTop="60dp"
+            >
                 <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:layout_weight="1">
+                        android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginLeft="5dp">
                     <TextView
                             android:text="Heure"
                             android:layout_width="match_parent"
@@ -47,7 +43,13 @@
             </LinearLayout>
             <ListView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:id="@+id/listRendezVous"/>
+                    android:layout_height="match_parent" android:id="@+id/listRendezVous"
+                    android:layout_marginLeft="5dp"/>
         </LinearLayout>
     </LinearLayout>
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    />
 </androidx.constraintlayout.widget.ConstraintLayout>

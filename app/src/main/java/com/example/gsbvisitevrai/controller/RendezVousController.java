@@ -49,6 +49,21 @@ public final class RendezVousController {
         return rendezVous;
     }
 
+    /**
+     * Liste des rendez-vous pour une date donnée
+     * @return : arraylist de rendez-vous
+     */
+
+    public ArrayList<RendezVous> rendezVous (String date) {
+        ArrayList<RendezVous> rendezVousDate = new ArrayList<>();
+        for (RendezVous rdv : rendezVous) {
+            if (rdv.getDate().equals(date)) {
+                rendezVousDate.add(rdv);
+            }
+        }
+        return rendezVousDate;
+    }
+
     public void ajouterRendezVous(String date, String heure, String numeroPraticien) {
         rendezVousDao.create(date, heure, numeroPraticien);
     }

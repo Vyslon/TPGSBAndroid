@@ -13,17 +13,8 @@
             android:layout_height="match_parent">
         <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            <ImageButton
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" app:srcCompat="@drawable/retour"
-                    android:id="@+id/btnRetourDeMedic"/>
-        </LinearLayout>
-        <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent" android:layout_marginTop="60dp" android:layout_marginLeft="5dp">
             <TextView
                     android:text="Les médicaments"
                     android:layout_width="match_parent"
@@ -33,4 +24,14 @@
                     android:layout_height="match_parent" android:id="@+id/listMedicaments"/>
         </LinearLayout>
     </LinearLayout>
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <!-- Intégration de la Toolbar -->
+        <include
+                layout="@layout/toolbar"/>
+        <!-- Intégration de la Bottomnavigation -->
+        <include
+                layout="@layout/bottomnavigation"/>
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
