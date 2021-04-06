@@ -10,28 +10,19 @@
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <Button
-                    android:text="Retour"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/btnRetourdeDetailMedic"/>
-        </LinearLayout>
-        <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent" android:layout_marginTop="60dp" android:layout_marginLeft="5dp">
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 <TextView
-                        android:text="Nom Commercial"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/textView4" android:layout_weight="1"/>
+                        android:text="Nom Commercial : "
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:id="@+id/textView4" android:layout_weight="1"/>
                 <TextView
                         android:text="TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/txtDetNomCommercial"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:id="@+id/txtDetNomCommercial"
                         android:layout_weight="1"/>
             </LinearLayout>
             <LinearLayout
@@ -39,52 +30,54 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 <TextView
-                        android:text="Effet"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/textView5" android:layout_weight="1"/>
+                        android:text="Effet : "
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:id="@+id/textView5" android:layout_weight="1"/>
                 <TextView
                         android:text="TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/txtDetEffet" android:layout_weight="1"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:id="@+id/txtDetEffet" android:layout_weight="1"/>
             </LinearLayout>
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 <TextView
-                        android:text="Prix"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:layout_weight="1"/>
+                        android:text="Prix : "
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:layout_weight="1"/>
                 <TextView
                         android:text="TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/txtDetPrix" android:layout_weight="1"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:id="@+id/txtDetPrix" android:layout_weight="1"/>
             </LinearLayout>
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/LinearLayout">
                 <TextView
-                        android:text="Depot Legal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/textView9" android:layout_weight="1"/>
+                        android:text="Depot Legal : "
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:id="@+id/textView9" android:layout_weight="1"/>
                 <TextView
                         android:text="TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/txtDetDepotLegal" android:layout_weight="1"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:id="@+id/txtDetDepotLegal"
+                        android:layout_weight="1"/>
             </LinearLayout>
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 <TextView
-                        android:text="Composition"
-                        android:layout_width="wrap_content"
+                        android:text="Composition : "
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/textView11" android:layout_weight="1"/>
                 <TextView
                         android:text="TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/txtDetComposition" android:layout_weight="1"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:id="@+id/txtDetComposition"
+                        android:layout_weight="1"/>
             </LinearLayout>
             <LinearLayout
                     android:orientation="horizontal"
@@ -92,13 +85,19 @@
                     android:layout_height="wrap_content">
                 <TextView
                         android:text="Contre Indication"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/textView13" android:layout_weight="1"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:id="@+id/textView13" android:layout_weight="1"/>
                 <TextView
                         android:text="TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/txtDetContreIndication" android:layout_weight="1"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:id="@+id/txtDetContreIndication"
+                        android:layout_weight="1"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+    <include
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+    />
 </androidx.constraintlayout.widget.ConstraintLayout>

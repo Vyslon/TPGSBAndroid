@@ -11,7 +11,13 @@
             android:theme="@style/GsbTheme">
         <activity android:name=".view.layout_spinner_praticiens">
         </activity>
-        <activity android:name=".view.DetailMedicamentActivity">
+        <activity android:name=".view.DetailMedicamentActivity"
+                  android:parentActivityName=".view.MedicamentActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".view.MedicamentActivity"
+                    android:resource="@color/text_normal"
+            />
         </activity>
         <activity android:name=".view.priseRDV"
                   android:parentActivityName=".view.listeRDV">

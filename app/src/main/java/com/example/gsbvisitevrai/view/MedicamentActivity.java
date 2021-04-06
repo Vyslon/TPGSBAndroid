@@ -22,7 +22,6 @@ import java.util.ArrayList;
 public class MedicamentActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     ListView lvMedicaments;
     com.example.gsbvisite.view.MedicamentListAdapter adapter;
-    private ArrayList<Medicament> lesmedicaments;
     ArrayList<Medicament> medicaments;
     ArrayList<Praticien> praticiens;
     ArrayList<RendezVous> rendezVous;
@@ -49,10 +48,11 @@ public class MedicamentActivity extends AppCompatActivity implements AdapterView
      */
     private void creerListe(){
         Intent intent = getIntent();
-        lesmedicaments =  intent.getParcelableArrayListExtra("lesMedocs");
-        if (lesmedicaments != null){
+        MedicamentController medicamentController = MedicamentController.getInstance(getBaseContext());
+        medicaments = medicamentController.medicaments();
+        if (medicaments != null){
             ListView lstHisto = (ListView)this.findViewById(R.id.listMedicaments);
-             adapter = new com.example.gsbvisite.view.MedicamentListAdapter(this, lesmedicaments);
+             adapter = new com.example.gsbvisite.view.MedicamentListAdapter(this, medicaments);
             lstHisto.setAdapter(adapter);
             lstHisto.setOnItemClickListener(this);
         }
@@ -78,6 +78,7 @@ public class MedicamentActivity extends AppCompatActivity implements AdapterView
     private void configureNavigation() {
         BottomNavigationView bottomNavigationView;
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        bottomNavigationView.setSelectedItemId(R.id.action_medicine);
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 (item) -> {
                     Intent intent;

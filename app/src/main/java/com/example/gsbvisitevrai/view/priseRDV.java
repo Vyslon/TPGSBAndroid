@@ -99,15 +99,6 @@ public class priseRDV extends AppCompatActivity implements DatePickerDialog.OnDa
         String myFormattedDate = myDateTime.format(myDateFormatter);
         TextView txtDateHeure = (TextView)findViewById(R.id.txtDateHeure);
         txtDateHeure.setText(myFormattedDate);
-        //  + ":" + myMinute
-        // textView / textView
-/*        textView.setText("Year: " + myYear + "\n" +
-                        "Month: " + myMonth + "\n" +
-                        "Day: " + myday + "\n" +
-                        "Hour: " + myHour + "\n" +
-                        "Minute: " + myMinute);
-
- */
     }
 
 

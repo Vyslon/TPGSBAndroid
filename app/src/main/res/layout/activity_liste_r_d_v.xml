@@ -17,7 +17,9 @@
             <com.applandeo.materialcalendarview.CalendarView
                     android:id="@+id/calendarView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:layout_marginTop="50dp"/>
+                    android:layout_height="match_parent" android:layout_marginTop="54dp"
+                    app:headerColor="?attr/colorPrimary"
+            />
         </LinearLayout>
     </LinearLayout>
 

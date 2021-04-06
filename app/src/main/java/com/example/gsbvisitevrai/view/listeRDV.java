@@ -2,6 +2,7 @@ package com.example.gsbvisitevrai.view;
 
 import android.content.Intent;
 
+import android.content.res.Configuration;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -26,6 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class listeRDV extends AppCompatActivity {
     private ArrayList<RendezVous> lesRDV;
@@ -43,6 +45,13 @@ public class listeRDV extends AppCompatActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Locale locale = new Locale("fr_FR");
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        this.getApplicationContext().getResources().updateConfiguration(config, null);
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liste_r_d_v);
         List<EventDay> events = new ArrayList<>();
@@ -92,7 +101,6 @@ public class listeRDV extends AppCompatActivity {
         this.configureToolbar();
         //2 - Configuration Navigation View
         this.configureNavigation();
-
     }
 
     private void configureToolbar() {
@@ -106,6 +114,7 @@ public class listeRDV extends AppCompatActivity {
     private void configureNavigation() {
         BottomNavigationView bottomNavigationView;
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        bottomNavigationView.setSelectedItemId(R.id.action_accueil);
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 (item) -> {
                     Intent intent;
