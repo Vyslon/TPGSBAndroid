@@ -3,10 +3,14 @@ package com.example.gsbvisitevrai.view;
 import android.content.Intent;
 
 import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Build;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
@@ -38,20 +42,12 @@ public class listeRDV extends AppCompatActivity {
     Bundle bundleMedocs = new Bundle();
     Bundle bundlePraticiens = new Bundle();
 
-
     /**
      * Appeler lors de l'ouverture de la page, affiche les rendez-vous dans l'agenda
      * @param savedInstanceState
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Locale locale = new Locale("fr_FR");
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        this.getApplicationContext().getResources().updateConfiguration(config, null);
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liste_r_d_v);
         List<EventDay> events = new ArrayList<>();
@@ -92,9 +88,6 @@ public class listeRDV extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        bundleRDV.putParcelableArrayList("lesRendezVous", rendezVous);
-        bundleMedocs.putParcelableArrayList("lesMedocs", medicaments);
-        bundlePraticiens.putParcelableArrayList("lesPraticiens", praticiens);
 
         ecouteAjouterRDV();
         //1 - Configuration Toolbar
@@ -119,20 +112,20 @@ public class listeRDV extends AppCompatActivity {
                 (item) -> {
                     Intent intent;
                     switch (item.getItemId()) {
+                        case R.id.action_accueil:
+                            intent = new Intent(listeRDV.this, listeRDV.class);
+                            startActivity(intent);
+                            break;
                         case R.id.action_medicine: {
                             intent = new Intent(listeRDV.this, MedicamentActivity.class);
-                            MedicamentController medicamentController = MedicamentController.getInstance(getBaseContext());
-                            medicaments = medicamentController.medicaments();
-                            bundleMedocs.putParcelableArrayList("lesMedocs", medicaments);
-                            intent.putExtras(bundleMedocs);
                             startActivity(intent);
                             break;
                         }
-/*                        case R.id.action_settings: {
-                            // TODO : intent = new Intent(listeRDV.this, Profil.class);
-                            //startActivity(intent);
+                        case R.id.action_settings: {
+                            intent = new Intent(listeRDV.this, ParametresActivity.class);
+                            startActivity(intent);
                             break;
-                        }*/
+                        }
                     }
                     return true;
                 }

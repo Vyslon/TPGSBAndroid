@@ -85,31 +85,18 @@ public class MedicamentActivity extends AppCompatActivity implements AdapterView
                     switch (item.getItemId()) {
                         case R.id.action_accueil:
                             intent = new Intent(MedicamentActivity.this, listeRDV.class);
-                            PraticienController praticienController = PraticienController.getInstance(getBaseContext());
-                            praticiens = praticienController.praticiens();
-                            RendezVousController rendezVousController = RendezVousController.getInstance(getBaseContext());
-                            rendezVous = rendezVousController.rendezVous();
-                            bundleRDV.putParcelableArrayList("lesRendezVous", rendezVous);
-                            bundleMedocs.putParcelableArrayList("lesMedocs", medicaments);
-                            bundlePraticiens.putParcelableArrayList("lesPraticiens", praticiens);
-                            intent.putExtras(bundleRDV);
-                            intent.putExtras(bundlePraticiens);
                             startActivity(intent);
                             break;
                         case R.id.action_medicine: {
                             intent = new Intent(MedicamentActivity.this, MedicamentActivity.class);
-                            MedicamentController medicamentController = MedicamentController.getInstance(getBaseContext());
-                            medicaments = medicamentController.medicaments();
-                            bundleMedocs.putParcelableArrayList("lesMedocs", medicaments);
-                            intent.putExtras(bundleMedocs);
                             startActivity(intent);
                             break;
                         }
-/*                        case R.id.action_settings: {
-                            // TODO : intent = new Intent(listeRDV.this, Profil.class);
-                            //startActivity(intent);
+                        case R.id.action_settings: {
+                            intent = new Intent(MedicamentActivity.this, ParametresActivity.class);
+                            startActivity(intent);
                             break;
-                        }*/
+                        }
                     }
                     return true;
                 }

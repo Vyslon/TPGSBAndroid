@@ -1,6 +1,8 @@
 package com.example.gsbvisitevrai.view;
 
 import android.content.Intent;
+
+import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -10,13 +12,19 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
+import com.desai.vatsal.mydynamictoast.MyDynamicToast;
 import com.example.gsbvisitevrai.R;
 import com.example.gsbvisitevrai.controller.MedicamentController;
 import com.example.gsbvisitevrai.controller.PraticienController;
 import com.example.gsbvisitevrai.controller.RendezVousController;
 import com.example.gsbvisitevrai.model.*;
 
+import java.io.*;
+import java.net.URL;
+
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Properties;
 
 public class MainActivity extends AppCompatActivity {
 /*    ArrayList<Medicament> medicaments;
@@ -40,13 +48,13 @@ public class MainActivity extends AppCompatActivity {
         editText.setOnEditorActionListener((v, actionId, event) -> {
             if(actionId == EditorInfo.IME_ACTION_DONE) {
                 String value = editText.getText().toString();
-                String marqueur = "9999";
-                if (value.compareTo(marqueur) == 0) {
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+                if (value.compareTo(pref.getString("password", null)) == 0) {
                     Intent intent = new Intent(MainActivity.this, listeRDV.class);
                     startActivity(intent);
                 }
                 else
-                    Toast.makeText(MainActivity.this, "Code erroné", Toast.LENGTH_SHORT).show();
+                    MyDynamicToast.errorMessage(MainActivity.this, "Code erroné");
             }
             return false;
         }
