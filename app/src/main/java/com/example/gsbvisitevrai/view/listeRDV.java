@@ -1,16 +1,7 @@
 package com.example.gsbvisitevrai.view;
 
 import android.content.Intent;
-
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.os.Build;
-import android.util.DisplayMetrics;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.Toast;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
@@ -18,7 +9,6 @@ import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
 import com.example.gsbvisitevrai.R;
-import com.example.gsbvisitevrai.controller.MedicamentController;
 import com.example.gsbvisitevrai.controller.PraticienController;
 import com.example.gsbvisitevrai.controller.RendezVousController;
 import com.example.gsbvisitevrai.model.Medicament;
@@ -26,12 +16,10 @@ import com.example.gsbvisitevrai.model.Praticien;
 import com.example.gsbvisitevrai.model.RendezVous;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 public class listeRDV extends AppCompatActivity {
     private ArrayList<RendezVous> lesRDV;
