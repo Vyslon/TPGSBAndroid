@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                     if (actionId == EditorInfo.IME_ACTION_DONE) {
                         String value = editText.getText().toString();
                         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
-                        if (value.compareTo(pref.getString("password", null)) == 0) {
+                        if (value.compareTo(pref.getString("password", "9999")) == 0) {
                             Intent intent = new Intent(MainActivity.this, listeRDV.class);
                             startActivity(intent);
                         } else
